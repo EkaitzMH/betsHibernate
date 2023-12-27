@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<f:view>
+		<h:head>
+			<meta charset="ISO-8859-1"></meta>
+			<title>Insert title here</title>
+		</h:head>
+		<h:body>
+			<h:form>
+                Urtea:<h:inputText id="urtea" value="#{loginBean.urtea}"></h:inputText>
+                Hilabetea:<h:inputText id="hilabetea" value="#{loginBean.hilabetea}"></h:inputText>
+                Eguna:<h:inputText id="eguna" value="#{loginBean.eguna}"></h:inputText><br></br>
+                
+               
+				
+                <h:commandButton value="Gertaerak Bilatu" action="#{loginBean.getEvents}" />
+                
+                <h:dataTable value="#{loginBean.gertaerak}" var="event">
+                    <h:column>
+                        <f:facet name="header">Gertaerak</f:facet>
+                        <h:commandButton value="#{event.description}" action="#{loginBean.createQuestion}">
+        					<f:setPropertyActionListener target="#{loginBean.aukeratutakoGertaera}" value="#{event}" />
+        				</h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                Aukeratutako Gertaera: #{loginBean.aukeratutakoGertaera.description}
+                 Galdera:<h:inputText id="galdera" value="#{loginBean.question}"></h:inputText>
+                ApostuMinimoa:<h:inputText id="betminimun" value="#{loginBean.betMinimun}"></h:inputText>
+                <h:commandButton value="Gertaerak sortu" action="#{loginBean.createQuestion}" />
+			</h:form>
+		</h:body>
+	</f:view>
+</html>

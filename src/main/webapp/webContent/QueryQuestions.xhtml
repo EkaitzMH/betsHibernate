@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <f:view>
+        <h:head>
+            <meta charset="UTF-8" />
+            <title>Question Query</title>
+        </h:head>
+        <h:body>
+            <h:form>
+                Urtea:<h:inputText id="urtea" value="#{loginBean.urtea}"></h:inputText>
+                Hilabetea:<h:inputText id="hilabetea" value="#{loginBean.hilabetea}"></h:inputText>
+                Eguna:<h:inputText id="eguna" value="#{loginBean.eguna}"></h:inputText>
+				
+                <h:commandButton value="Bidali" action="#{loginBean.getEvents}" />
+                <h:dataTable value="#{loginBean.gertaerak}" var="event">
+                    <h:column>
+                        <f:facet name="header">Gertaerak</f:facet>
+                        <h:commandButton value="#{event.description}" action="#{loginBean.getQuestions}">
+        					<f:setPropertyActionListener target="#{loginBean.aukeratutakoGertaera}" value="#{event}" />
+        				</h:commandButton>
+                    </h:column>
+                </h:dataTable>
+			</h:form>
+			<h:dataTable value="#{loginBean.galderak}" var="question">
+    			<h:column>
+        			<f:facet name="header">Galderak</f:facet>
+        			#{question.question}
+    			</h:column>
+			</h:dataTable>
+        </h:body>
+    </f:view>
+</html>
